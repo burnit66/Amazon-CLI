@@ -1,0 +1,24 @@
+{
+  "name": "Amazon-CLI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bamazon.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burnit66/Amazon-CLI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/burnit66/Amazon-CLI/issues"
+  },
+  "homepage": "https://github.com/burnit66/Amazon-CLI#readme",
+  "dependencies": {
+    "inquirer": "^6.2.0",
+    "mysql": "^2.16.0"
+  }
+}
