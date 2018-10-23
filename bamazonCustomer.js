@@ -93,7 +93,9 @@ function whatToDo() {
                         ],
                         function (err) {
                             if (err) throw err
-                            console.log("Congratulations! You just ordered " + userQuantity + " " + productReturn.product_name + "(s)" + "\n")
+                            var totalPrice = userQuantity * productReturn.price
+                            totalPrice = Math.round(totalPrice * 100) / 100
+                            console.log("Congratulations! You just ordered " + userQuantity + " " + productReturn.product_name + "(s)" + "\n" + "You spent a total of " + totalPrice + "\n")
                             connection.end()
                         })
                     return true;
