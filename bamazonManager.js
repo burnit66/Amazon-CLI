@@ -144,8 +144,19 @@ function addProd() {
                 message: "How many are in stock?"
             }
         ]).then(function (answer) {
-            console.log("working")
-            showCommands()
+            connection.query(
+                "INSERT INTO products SET ?", {
+                    product_name: answer.product,
+                    department_name: answer.dept,
+                    price: answer.price,
+                    stock_quantity: answer.stock
+                },
+                function (err) {
+                    if (err) throw err;
+                    console.log("\n" + answer.product + " successfully added into inventory log! \n");
+                    showCommands()
+                }
+            );
         })
     });
 }
