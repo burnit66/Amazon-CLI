@@ -72,30 +72,80 @@ function addInv() {
     connection.query("SELECT * FROM products", function (err, results) {
         if (err) throw err;
         inquirer.prompt([{
-            name: "products",
-            type: "list",
-            choices: function () {
-                var choiceArray = []
-                for (var i = 0; i < results.length; i++) {
-                    choiceArray.push(results[i].product_name)
-                }
-                return choiceArray;
+                name: "products",
+                type: "list",
+                choices: function () {
+                    var choiceArray = []
+                    for (var i = 0; i < results.length; i++) {
+                        choiceArray.push(results[i].product_name)
+                    }
+                    return choiceArray;
+                },
+                message: "Which product do you need to add inventory to?"
             },
-            message: "Which product do you need to add inventory to?"
-        }]).then(function (answer) {
-            connection.query("SELECT * FROM products WHERE product_name = ?", [answer.products], function (err, results) {
+            {
+                name: "quantity",
+                type: "input",
+                validate: function (value) {
+                    if (isNaN(value) === false) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+                message: "How many do you want to add?"
+            }
+        ]).then(function (answer) {
+            connection.query("UPDATE products SET stock_quantity = stock_quantity + ? WHERE product_name = ?", [answer.quantity, answer.products], function (err) {
                 if (err) throw err
-                console.log(results)
+                console.log("Successfully added " + answer.quantity + " " + answer.products + "(s)")
+                showCommands()
             })
         })
-    });
+    })
 }
 
 function addProd() {
     connection.query("SELECT * FROM products WHERE stock_quantity < 3", function (err, results) {
         if (err) throw err;
-        console.log("\n")
-        console.table(results)
-        showCommands()
+        inquirer.prompt([{
+                name: "product",
+                type: "input",
+                message: "What is the product?"
+            },
+            {
+                name: "dept",
+                type: "list",
+                choices: ["Bathroom", "Kitchen", "Home", "ETC"],
+                message: "Which department does this product belong in?"
+            },
+            {
+                name: "price",
+                type: "input",
+                validate: function (value) {
+                    if (isNaN(value) === false) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+                message: "Price this item - make sure to format it correctly - e.g 2.00"
+            },
+            {
+                name: "stock",
+                type: "input",
+                validate: function (value) {
+                    if (isNaN(value) === false) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+                message: "How many are in stock?"
+            }
+        ]).then(function (answer) {
+            console.log("working")
+            showCommands()
+        })
     });
 }
