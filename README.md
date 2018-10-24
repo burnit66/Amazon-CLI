@@ -15,5 +15,5 @@ Bamazon Manager Can:
  - Add to inventory
  - Enter a new product
 
-## Using LIRI
+## Using Bamazon
 Everything is rompt based using inquirer
