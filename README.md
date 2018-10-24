@@ -17,3 +17,7 @@ Bamazon Manager Can:
 
 ## Using Bamazon
 Everything is rompt based using inquirer
+
+## Customer
+
+## Manager
