@@ -16,7 +16,7 @@ Bamazon Manager Can:
  - Enter a new product
 
 ## Using Bamazon
-Everything is rompt based using inquirer
+Everything is prompt based using inquirer
 
 ## Customer
 ![bamazon customer](https://user-images.githubusercontent.com/28606480/47440961-354e2e00-d77d-11e8-86d9-cc6707d48b23.png)
